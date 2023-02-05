@@ -5,10 +5,19 @@ Data processing should happen here.
 Edit this file to implement your module.
 """
 
+import os
+import torch
 from logging import getLogger
 
 log = getLogger("module")
 
+ORDERED_LABELS = [label.strip() for label in os.getenv("ORDERED_LABELS", "").split(',')]
+OUTPUT_LABEL = os.getenv("OUTPUT_LABEL", "")
+
+log.info(f"Loading the model {os.getenv('MODEL_FILENAME')} in CPU mode ...")
+DEVICE = torch.device("cpu")
+MODEL = torch.load(f"model/{os.getenv('MODEL_FILENAME')}", map_location=DEVICE)
+log.info("Model loaded successfully.")
 
 def module_main(received_data: any) -> [any, str]:
     """
@@ -27,9 +36,13 @@ def module_main(received_data: any) -> [any, str]:
     log.debug("Processing ...")
 
     try:
-        # YOUR CODE HERE
-
-        processed_data = received_data
+        if type(received_data) == list:
+            X = torch.tensor([[data[label] for label in ORDERED_LABELS] for data in received_data], device=DEVICE)
+            y_hat = MODEL(X).data.tolist()
+            processed_data = [{OUTPUT_LABEL: y[0]} for y in y_hat]
+        else:
+            X = torch.tensor([received_data[label] for label in ORDERED_LABELS], device=DEVICE).reshape(1,-1)
+            processed_data = {OUTPUT_LABEL: MODEL(X).item()}
 
         return processed_data, None
 
