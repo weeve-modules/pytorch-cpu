@@ -8,11 +8,13 @@ Edit this file to implement your module.
 import os
 import torch
 from logging import getLogger
+from .dtypes import DTYPES
 
 log = getLogger("module")
 
 ORDERED_LABELS = [label.strip() for label in os.getenv("ORDERED_LABELS", "").split(',')]
 OUTPUT_LABEL = os.getenv("OUTPUT_LABEL", "")
+INPUT_DTYPE = os.getenv("INPUT_DTYPE", "float32/float") # float32/float is a default PyTorch dtype
 
 log.info(f"Loading the model {os.getenv('MODEL_FILENAME')} in CPU mode ...")
 DEVICE = torch.device("cpu")
@@ -37,11 +39,11 @@ def module_main(received_data: any) -> [any, str]:
 
     try:
         if type(received_data) == list:
-            X = torch.tensor([[data[label] for label in ORDERED_LABELS] for data in received_data], device=DEVICE)
+            X = torch.tensor([[data[label] for label in ORDERED_LABELS] for data in received_data], dtype=DTYPES[INPUT_DTYPE], device=DEVICE)
             y_hat = MODEL(X).data.tolist()
             processed_data = [{OUTPUT_LABEL: y[0]} for y in y_hat]
         else:
-            X = torch.tensor([received_data[label] for label in ORDERED_LABELS], device=DEVICE).reshape(1,-1)
+            X = torch.tensor([received_data[label] for label in ORDERED_LABELS], dtype=DTYPES[INPUT_DTYPE], device=DEVICE).reshape(1,-1)
             processed_data = {OUTPUT_LABEL: MODEL(X).item()}
 
         return processed_data, None

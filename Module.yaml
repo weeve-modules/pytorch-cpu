@@ -33,6 +33,30 @@ envs:
     type: 'text'
     options: []
     dependencies: []
+  - name: Model Input dtype
+    key: INPUT_DTYPE
+    description: dtype of the input tensor to the model.
+    value: 'float32'
+    type: 'select'
+    options:
+        - 'float32/float'
+        - 'float64/double'
+        - 'float16/half'
+        - 'bfloat16'
+        - 'complex32/chalf'
+        - 'complex64/cfloat'
+        - 'complex128/cdouble'
+        - 'uint8'
+        - 'int8'
+        - 'int16/short'
+        - 'int32/int'
+        - 'int64/long'
+        - 'bool'
+        - 'quint8'
+        - 'qint8'
+        - 'qint32'
+        - 'quint4x2'
+    dependencies: []
   - name: Ordered Labels
     key: ORDERED_LABELS
     description: Input data labels in the order of feeding into the model. Later a PyTorch tensor will be created to feed that data into the model in the given order.
