@@ -33,9 +33,9 @@ envs:
     type: 'text'
     options: []
     dependencies: []
-  - name: Model Input dtype
+  - name: Model Input Data Type
     key: INPUT_DTYPE
-    description: dtype of the input tensor to the model.
+    description: Data type (dtype) of the input tensor to the model.
     value: 'float32'
     type: 'select'
     options:
