@@ -36,7 +36,7 @@ envs:
   - name: Model Input Data Type
     key: INPUT_DTYPE
     description: Data type (dtype) of the input tensor to the model.
-    value: 'float32'
+    value: 'float32/float'
     type: 'select'
     options:
         - 'float32/float'
