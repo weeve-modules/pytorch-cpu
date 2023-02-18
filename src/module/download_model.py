@@ -21,8 +21,8 @@ def download_model():
 
             # save the model
             if resp.status_code == 200:
-                with open(f"model/{getenv('MODEL_FILENAME')}", 'wb') as model_file:
-                    log.info(f"Saving the model inside Docker container in: model/{getenv('MODEL_FILENAME')} ...")
+                with open(f"model/downloaded_model.pt", 'wb') as model_file:
+                    log.info(f"Saving the model inside Docker container in: model/downloaded_model.pt ...")
                     model_file.write(resp.content)
 
                 log.info("Successfully downloaded the model.")

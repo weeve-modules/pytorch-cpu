@@ -16,9 +16,14 @@ ORDERED_LABELS = [label.strip() for label in os.getenv("ORDERED_LABELS", "").spl
 OUTPUT_LABEL = os.getenv("OUTPUT_LABEL", "")
 INPUT_DTYPE = os.getenv("INPUT_DTYPE", "float32/float") # float32/float is a default PyTorch dtype
 
-log.info(f"Loading the model {os.getenv('MODEL_FILENAME')} in CPU mode ...")
+log.info(f"Loading the model in CPU mode ...")
 DEVICE = torch.device("cpu")
-MODEL = torch.load(f"model/{os.getenv('MODEL_FILENAME')}", map_location=DEVICE)
+if os.getenv("MODEL_DOWNLOAD_URL"):
+    log.debug("Loading the model downloaded into the docker container: model/downloaded_model.pt ...")
+    MODEL = torch.load(f"model/downloaded_model.pt", map_location=DEVICE)
+else:
+    log.debug(f"Loading the model mounted by volume to the docker container: {os.getenv('MODEL_FILEPATH')} ...")
+    MODEL = torch.load(f"{os.getenv('MODEL_FILEPATH')}", map_location=DEVICE)
 log.info("Model loaded successfully.")
 
 def module_main(received_data: any) -> [any, str]:

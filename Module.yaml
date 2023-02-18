@@ -12,24 +12,17 @@ image:
   homepage: 'https://hub.docker.com/r/weevenetwork/pytorch-cpu'
 repository: 'https://github.com/weeve-modules/pytorch-cpu'
 envs:
-  - name: Model Filename
-    key: MODEL_FILENAME
-    description: Filename of the model to load.
-    value: 'my_model.pt'
-    type: 'text'
-    options: []
-    dependencies: []
   - name: Model Download URL
     key: MODEL_DOWNLOAD_URL
-    description: If model is stored online, then provide a download URL to parse the model. Leave empty field to search for the model in the local filesystem.
+    description: If model is stored online, then provide a download URL to parse the model. Leave empty field to search for the model in the local filesystem (see Model Filepath configuration field).
     value: ''
     type: 'text'
     options: []
     dependencies: []
   - name: Model Filepath
     key: MODEL_FILEPATH
-    description: If model is stored in the local filesystem (above field for URL was left empty), then provide a path to the folder containing the model.
-    value: '/Users/Desktop/ml-model'
+    description: If model is stored in the local filesystem of the edge device or node (above field for the URL was left empty), then provide a path to the model file.
+    value: '/Users/Desktop/my_model.pt'
     type: 'text'
     options: []
     dependencies: []
@@ -73,9 +66,7 @@ envs:
     dependencies: []
 ports: []
 envPorts: []
-mounts:
-  - container: '/model'
-    host: 'MODEL_FILEPATH'
+mounts: []
 envMounts:
   - MODEL_FILEPATH
 devices: []

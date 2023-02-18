@@ -1,11 +1,11 @@
 # PyTorch CPU
 
-|           |                                                                                 |
-| --------- | ------------------------------------------------------------------------------- |
-| Name      | pytorch-cpu                                                                    |
-| Version   | v1.0.0                                                                          |
+|           |                                                                               |
+| --------- | ----------------------------------------------------------------------------- |
+| Name      | pytorch-cpu                                                                   |
+| Version   | v1.0.0                                                                        |
 | DockerHub | [weevenetwork/pytorch-cpu](https://hub.docker.com/r/weevenetwork/pytorch-cpu) |
-| Authors   | Jakub Grzelak                                                                   |
+| Authors   | Jakub Grzelak                                                                 |
 
 - [PyTorch CPU](#pytorch-cpu)
   - [Description](#description)
@@ -26,15 +26,13 @@ Use your pre-trained PyTorch model with weeve modules. This module supports only
 
 The following module configurations can be provided in a data service designer section on weeve platform:
 
-| Name               | Environment Variables | type   | Description                                                                                                                                                                                       |
-| ------------------ | --------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Model Filename     | MODEL_FILENAME        | string | Filename of the model to load.                                                                                                                                                                    |
-| Model Download URL | MODEL_DOWNLOAD_URL    | string | If model is stored online, then provide a download URL to parse the model. Leave empty field to search for the model in the local filesystem.                                                     |
-| Model Filepath     | MODEL_FILEPATH        | string | If model is stored in the local filesystem (above field for URL was left empty), then provide a path to the folder containing the model. This path will be used as a Docker volume for the module. |
-| Model Input dtype       | INPUT_DTYPE          | string | [dtype](https://pytorch.org/docs/stable/tensors.html#data-types) of the input tensor to the model: `float32/float`, `float64/double`, `float16/half`, `bfloat16`, `complex32/chalf`, `complex64/cfloat`, `complex128/cdouble`, `uint8`, `int8`, `int16/short`, `int32/int`, `int64/long`, `bool`, `quint8`, `qint8`, `qint32`, `quint4x2`                                                                                                                                                   |
-| Ordered Labels     | ORDERED_LABELS        | string | Input data labels in the order of feeding into the model. Later a tensor will be created to feed that data into the model in the given order.                                                |
-| Output Label       | OUTPUT_LABEL          | string | The output label at which data is dispatched.                                                                                                                                                     |
-
+| Name               | Environment Variables | type   | Description                                                                                                                                                                                                                                                                                                                               |
+| ------------------ | --------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Model Download URL | MODEL_DOWNLOAD_URL    | string | If model is stored online, then provide a download URL to parse the model. Leave empty field to search for the model in the local filesystem (see Model Filepath configuration field).                                                                                                                                                    |
+| Model Filepath     | MODEL_FILEPATH        | string | If model is stored in the local filesystem of the edge device or node (above field for the URL was left empty), then provide a path to the model file.                |
+| Model Input dtype  | INPUT_DTYPE           | string | [dtype](https://pytorch.org/docs/stable/tensors.html#data-types) of the input tensor to the model: `float32/float`, `float64/double`, `float16/half`, `bfloat16`, `complex32/chalf`, `complex64/cfloat`, `complex128/cdouble`, `uint8`, `int8`, `int16/short`, `int32/int`, `int64/long`, `bool`, `quint8`, `qint8`, `qint32`, `quint4x2` |
+| Ordered Labels     | ORDERED_LABELS        | string | Input data labels in the order of feeding into the model. Later a tensor will be created to feed that data into the model in the given order.                                                                                                                                                                                             |
+| Output Label       | OUTPUT_LABEL          | string | The output label at which data is dispatched.                                                                                                                                                                                                                                                                                             |
 
 ### Set by the weeve Agent on the edge-node
 
