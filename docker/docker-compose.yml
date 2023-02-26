@@ -1,14 +1,19 @@
 version: "3.0"
 services:
-  boilerplate:
+  pytorch-cpu:
     build:
       context: ../
       dockerfile: docker/Dockerfile
     environment:
-      MODULE_NAME: "boilerplate"
+      MODULE_NAME: "pytorch-cpu"
       MODULE_TYPE: "Processing"
       INGRESS_HOST: "0.0.0.0"
       INGRESS_PORT: "80"
       EGRESS_URLS: "https://testdockercompose.free.beeceptor.com"
+      MODEL_DOWNLOAD_URL: "https://drive.google.com/uc?export=download&id=1-abcdefgh"
+      MODEL_FILEPATH:
+      INPUT_DTYPE: "float32/float"
+      ORDERED_LABELS: "temp, volume, pressure, mass, rpm, speed, density, measurement1, measurement2, id"
+      OUTPUT_LABEL: "prediction"
     ports:
       - 80:80
