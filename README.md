@@ -3,7 +3,7 @@
 |           |                                                                               |
 | --------- | ----------------------------------------------------------------------------- |
 | Name      | pytorch-cpu                                                                   |
-| Version   | v1.0.0                                                                        |
+| Version   | v1.0.1                                                                        |
 | DockerHub | [weevenetwork/pytorch-cpu](https://hub.docker.com/r/weevenetwork/pytorch-cpu) |
 | Authors   | Jakub Grzelak                                                                 |
 

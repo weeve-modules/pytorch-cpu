@@ -1,14 +1,14 @@
 displayName: 'PyTorch CPU'
 moduleName: 'pytorch-cpu'
 description: 'Use your PyTorch model with CPU device settings.'
-versionName: 'v1.0.0'
+versionName: 'v1.0.1'
 isPublic: true
 categories:
   - 'Data Science'
 type: 'Processing'
 image:
   name: 'weevenetwork/pytorch-cpu'
-  tag: 'v1.0.0'
+  tag: 'v1.0.1'
   homepage: 'https://hub.docker.com/r/weevenetwork/pytorch-cpu'
 repository: 'https://github.com/weeve-modules/pytorch-cpu'
 envs:
